@@ -8,26 +8,19 @@ import java.sql.Date;
 
 @Data
 @Entity
-@Table(name = "tasks")
-public class Tasks implements Serializable {
-
+public class LegalDeadline implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "legal_case_id", nullable = false) // Define la clave foránea
     private LegalCases legalCase;
     
-    @Column(nullable = true, columnDefinition = "nvarchar(255)")
+    @Column(columnDefinition = "nvarchar(255)")
     private String description;
-    private Date deadline;
-    @Column(nullable = true, columnDefinition = "nvarchar(10)")
-    private String priority;
-    @Column(nullable = true, columnDefinition = "nvarchar(10)")
+    private Date endDate;
+    @Column(columnDefinition = "nvarchar(30)")
     private String status;
-    @Column(nullable = true, columnDefinition = "nvarchar(250)")
-    private String evidence; 
 }
