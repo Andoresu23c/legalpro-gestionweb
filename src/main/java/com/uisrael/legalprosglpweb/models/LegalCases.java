@@ -15,7 +15,7 @@ public class LegalCases implements Serializable{
     private Long id;
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
-    private Clients clientId;
+    private Clients client;
 
     @Column(nullable = false, columnDefinition = "nvarchar(20)")
     private String caseType;
@@ -32,7 +32,7 @@ public class LegalCases implements Serializable{
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tasks> tasks;
 
-    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "notifications", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notifications> notifications;
 
 }

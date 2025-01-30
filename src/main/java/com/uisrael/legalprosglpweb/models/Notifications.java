@@ -22,7 +22,7 @@ public class Notifications implements Serializable {
     
     @Column(nullable = false, columnDefinition = "nvarchar(25)")
     private String type;
-    @Column(nullable = false, columnDefinition = "nvarchar(255")
+    @Column(nullable = false, columnDefinition = "nvarchar(255)")
     private String message;
     private Date dateSend;
 
