@@ -29,10 +29,10 @@ public class LegalCases implements Serializable{
     @OneToMany(mappedBy = "legalCase", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LegalDeadline> legalDeadlines;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "legalCase", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tasks> tasks;
 
-    @OneToMany(mappedBy = "notifications", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "legalCase", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notifications> notifications;
 
 }

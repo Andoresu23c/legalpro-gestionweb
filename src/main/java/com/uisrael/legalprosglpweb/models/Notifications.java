@@ -17,6 +17,7 @@ public class Notifications implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
+    @ManyToOne
     @JoinColumn(name = "legal_case_id", nullable = false) // Define la clave foránea
     private LegalCases legalCase;
     
