@@ -27,6 +27,6 @@ public class Clients implements Serializable {
     @Column(nullable=false, columnDefinition = "nvarchar(10)")
     private String phone;
 
-    @OneToMany (mappedBy = "legalCase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private java.util.List<LegalCases> legalCases;
 }
