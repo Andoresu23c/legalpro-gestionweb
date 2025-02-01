@@ -6,8 +6,6 @@ import com.uisrael.legalprosglpweb.models.LegalCases;
 
 @Repository
 public interface LegalCasesRepository extends GenericRepository<LegalCases, Long> {
-    List<LegalCases> findByClientId(Long clientId);
-    boolean existsByCaseCode(String caseCode);
 }
 
 

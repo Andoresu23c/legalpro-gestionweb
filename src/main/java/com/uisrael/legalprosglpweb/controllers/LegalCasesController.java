@@ -5,27 +5,37 @@ import com.uisrael.legalprosglpweb.services.LegalCasesService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/cases")
-public class LegalCasesController extends GenericController<LegalCases, Long> {
+@RequestMapping("/api/legalCase")
+public class LegalCasesController{
 
     private final LegalCasesService legalCasesService;
 
     public LegalCasesController(LegalCasesService legalCasesService) {
-        super(legalCasesService);
         this.legalCasesService = legalCasesService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<LegalCases> createCase(@RequestBody LegalCases legalCase) {
-        legalCase.setCaseCode(legalCasesService.generateUniqueCaseCode());
-        return ResponseEntity.ok(legalCasesService.save(legalCase));
+    @PostMapping
+    public ResponseEntity<LegalCases> createClient(@RequestBody LegalCases legalCases) {
+        return ResponseEntity.ok(legalCasesService.save(legalCases));
     }
 
-    @GetMapping("/client/{clientId}")
-    public ResponseEntity<List<LegalCases>> getCasesByClient(@PathVariable Long clientId) {
-        return ResponseEntity.ok(legalCasesService.findByClientId(clientId));
+    @PutMapping("/{id}")
+    public ResponseEntity<LegalCases> updateClient(@PathVariable Long id, @RequestBody LegalCases legalCases) {
+        if (!legalCasesService.findById(id).isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        //legalCases.setId(id); // Asegurar que la ID es la misma
+        legalCases.setDescription(legalCases.getDescription());
+        return ResponseEntity.ok(legalCasesService.save(legalCases));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
+        if (!legalCasesService.findById(id).isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        legalCasesService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
